@@ -10,26 +10,26 @@
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background-color: #E6E6E6; /* DFW Light Gray */
+            background-color: #E6E6E6;
         }
         .form-container {
-            background-color: #FFFFFF; /* White */
+            background-color: #FFFFFF;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(88, 88, 88, 0.5); /* DFW Dark Gray with opacity */
+            box-shadow: 0 4px 12px rgba(88, 88, 88, 0.5);
         }
         h2, h3, h4 {
-            color: #41395F; /* DFW Purple */
+            color: #41395F;
             margin-bottom: 20px;
         }
         h2 span {
             font-style: italic;
-            color: #3EB1C8; /* DFW Blue */
+            color: #3EB1C8;
         }
         h3 {
             font-size: 1.2em;
             margin-top: 25px;
-            border-bottom: 1px solid #3EB1C8; /* DFW Blue */
+            border-bottom: 1px solid #3EB1C8;
             padding-bottom: 10px;
         }
         h4 {
@@ -40,60 +40,39 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #585858; /* DFW Dark Gray */
+            color: #585858;
         }
         input, select, textarea {
             width: 100%;
             padding: 12px;
             margin-bottom: 15px;
-            border: 1px solid #585858; /* DFW Dark Gray */
+            border: 1px solid #585858;
             border-radius: 6px;
             box-sizing: border-box;
             font-size: 16px;
-            background-color: #F0F0F0; /* Lightened DFW Light Gray */
+            background-color: #F0F0F0;
         }
-        input:disabled, select:disabled, textarea:disabled {
-            background-color: #E6E6E6; /* DFW Light Gray */
+        input:disabled {
+            background-color: #E6E6E6;
             cursor: not-allowed;
         }
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #3EB1C8; /* DFW Blue */
-            box-shadow: 0 0 6px rgba(62, 177, 200, 0.5); /* DFW Blue with opacity */
-        }
-        .flex-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        .flex-container .airline-input-container {
-            flex: 1;
+            border-color: #3EB1C8;
+            box-shadow: 0 0 6px rgba(62, 177, 200, 0.5);
         }
         .two-column {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 20px;
         }
         .contact-group {
-            border: 1px solid #3EB1C8; /* DFW Blue */
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            background-color: #F0F0F0; /* Lightened DFW Light Gray */
-        }
-        .contact-group label {
-            margin-top: 10px;
-        }
-        .add-another {
-            margin-bottom: 15px;
-        }
-        .na-option {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-bottom: 15px;
+            border: 1px solid #3EB1C8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #F0F0F0;
+            position: relative;
         }
         .provider-header {
             display: flex;
@@ -101,229 +80,311 @@
             align-items: center;
             margin-bottom: 15px;
         }
-        .email-na-option, .yesno-question {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: -10px;
-            margin-bottom: 10px;
+        .yesno-question {
+            margin-bottom: 15px;
         }
         input[type="radio"], input[type="checkbox"] {
             width: auto;
-            margin-right: 10px;
+            margin-right: 8px;
         }
-        .submit-btn {
-            background-color: #FF5000; /* DFW Orange */
-            color: #FFFFFF; /* White */
+        .submit-btn, .add-contact-btn {
+            background-color: #FF5000;
+            color: #FFFFFF;
             border: none;
             padding: 12px 24px;
             cursor: pointer;
             border-radius: 6px;
             font-size: 16px;
+            width: auto;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .submit-btn {
             width: 100%;
-            margin-top: 20px;
         }
-        .submit-btn:hover {
-            background-color: #E64500; /* Darkened DFW Orange */
-        }
-        .error {
-            color: #FF5000; /* DFW Orange */
-            font-size: 14px;
-            margin-top: -10px;
-            margin-bottom: 10px;
-            display: none;
+        .submit-btn:hover, .add-contact-btn:hover {
+            background-color: #E64500;
         }
         .success-message {
             display: none;
-            color: #3EB1C8; /* DFW Blue */
+            color: #3EB1C8;
             font-size: 16px;
             text-align: center;
             margin-bottom: 20px;
             padding: 10px;
-            background-color: #E6F4F8; /* Light DFW Blue */
+            background-color: #E6F4F8;
             border-radius: 6px;
         }
         .remove-btn {
-            background-color: #F2A900; /* DFW Yellow */
-            color: #FFFFFF; /* White */
+            background-color: #F2A900;
+            color: #FFFFFF;
             border: none;
             padding: 8px 12px;
             cursor: pointer;
             border-radius: 6px;
-            margin-top: 10px;
             font-size: 14px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
         }
         .remove-btn:hover {
-            background-color: #D99400; /* Darkened DFW Yellow */
+            background-color: #D99400;
         }
-        .contact-header {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            margin-bottom: 15px;
+        .error-message {
+            color: #FF5000;
+            font-size: 0.875em;
+            margin-top: -10px;
+            display: none;
+        }
+        input.invalid, select.invalid {
+            border-color: #FF5000;
         }
     </style>
 </head>
 <body>
     <div class="form-container">
-        <div class="flex-container">
-            <h2>Airline Contact Information for <span id="airlineTitle"></span></h2>
-            <div class="airline-input-container">
-                <label for="airline">Airline Name</label>
-                <input type="text" id="airline" name="airline" required placeholder="Enter airline name">
-            </div>
-        </div>
+        <h2>Airline Contact Information for <span id="airlineTitle"></span></h2>
         <div id="successMessage" class="success-message">Thank you! Your submission has been received.</div>
 
-        <form id="airlineForm" name="airline-contact" method="POST" netlify netlify-honeypot="bot-field">
+        <form id="airlineForm" name="airline-contact" method="POST" netlify netlify-honeypot="bot-field" novalidate>
             <p style="display: none;">
                 <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
             </p>
 
+            <label for="airline">Airline Name</label>
+            <input type="text" id="airline" name="airline" required placeholder="Enter airline name">
+            <div class="error-message" id="airlineError">This field is required.</div>
+            
             <h3>Station Manager Details</h3>
             <label for="managerName">Station Manager Name:</label>
             <input type="text" id="managerName" name="manager_name" required placeholder="Enter station manager's name">
+            <div class="error-message" id="managerNameError">This field is required.</div>
+
             <div class="two-column">
                 <div>
                     <label for="managerPhone">Phone Number:</label>
                     <input type="tel" id="managerPhone" name="manager_phone" required placeholder="Enter phone number">
+                    <div class="error-message" id="managerPhoneError">This field is required.</div>
                 </div>
                 <div>
                     <label for="managerEmail">Email Address:</label>
                     <input type="email" id="managerEmail" name="manager_email" required placeholder="Enter email address">
+                    <div class="error-message" id="managerEmailError">A valid email is required.</div>
                 </div>
             </div>
 
             <h3>Supervisor and Lead Agent Details</h3>
-            <div id="contactGroups">
-                <!-- Contact groups will be added by script -->
+            <div id="contactGroupsContainer">
+                <!-- Dynamic contact groups will be inserted here -->
             </div>
-            <div class="add-another">
-                <label>Add another contact?</label>
-                <label><input type="radio" name="addMore" value="yes"> Yes</label>
-                <label><input type="radio" name="addMore" value="no"> No</label>
-            </div>
+            <button type="button" class="add-contact-btn" id="addContactBtn">Add another Supervisor/Lead</button>
 
-            <!-- Operations Section - Hidden by default -->
-            <div id="operationsContainer" style="display: none;">
-                <h3>Operations</h3>
-                <div class="contact-group">
-                    <h4>System Operations</h4>
-                    <label for="systemPhone">Phone Number:</label>
-                    <input type="tel" id="systemPhone" name="system_phone" required placeholder="Enter system operations phone number">
-                    <label for="systemEmail">Email Address:</label>
-                    <div class="email-na-option">
-                        <label><input type="checkbox" name="systemEmailNA" onclick="toggleInput('systemEmail', this.checked)"> N/A</label>
+            <h3>Operations</h3>
+            <div class="contact-group">
+                <h4>System Operations</h4>
+                <div class="two-column">
+                    <div>
+                        <label for="systemPhone">Phone Number:</label>
+                        <input type="tel" id="systemPhone" name="system_phone" required placeholder="Enter phone number">
+                        <div class="error-message" id="systemPhoneError">This field is required.</div>
                     </div>
-                    <input type="email" id="systemEmail" name="system_email" required placeholder="Enter system operations email address">
+                    <div>
+                        <label for="systemEmail">Email Address (Optional):</label>
+                        <input type="email" id="systemEmail" name="system_email" placeholder="Enter email address">
+                    </div>
                 </div>
-                
+            </div>
+            <div class="contact-group">
                 <div class="yesno-question">
                     <label>Do you have a local operations or duty phone?</label>
                     <label><input type="radio" name="hasLocalOps" value="yes"> Yes</label>
                     <label><input type="radio" name="hasLocalOps" value="no" checked> No</label>
                 </div>
-
-                <!-- DFW Operations - Hidden by default -->
                 <div id="dfwOpsSection" style="display: none;">
-                    <div class="contact-group">
-                        <h4>DFW Operations/Duty Phone</h4>
-                        <label for="dfwPhone">Phone Number:</label>
-                        <input type="tel" id="dfwPhone" name="dfw_phone" placeholder="Enter DFW operations phone number">
-                        <label for="dfwEmail">Email Address:</label>
-                        <div class="email-na-option">
-                            <label><input type="checkbox" name="dfwEmailNA" onclick="toggleInput('dfwEmail', this.checked)"> N/A</label>
+                    <h4>DFW Operations/Duty Phone</h4>
+                    <div class="two-column">
+                         <div>
+                            <label for="dfwPhone">Phone Number:</label>
+                            <input type="tel" id="dfwPhone" name="dfw_phone" placeholder="Enter phone number">
+                            <div class="error-message" id="dfwPhoneError">This field is required.</div>
                         </div>
-                        <input type="email" id="dfwEmail" name="dfw_email" placeholder="Enter DFW operations email address">
+                        <div>
+                            <label for="dfwEmail">Email Address (Optional):</label>
+                            <input type="email" id="dfwEmail" name="dfw_email" placeholder="Enter email address">
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Providers Section - Will be shown with Operations -->
-            <div id="providersContainer" style="display: none;">
-                <h3>Providers</h3>
-                <!-- Maintenance Provider -->
-                <div class="contact-group">
-                    <div class="provider-header"><h4>Maintenance Provider</h4><div class="na-option"><label><input type="checkbox" name="maintenanceNA" onclick="toggleProvider('maintenance', this.checked)"> N/A</label></div></div>
-                    <label for="maintenanceName">Name:</label><input type="text" id="maintenanceName" name="maintenance_name" required placeholder="Enter maintenance provider name">
-                    <div class="two-column"><div><label for="maintenancePhone">Phone Number:</label><input type="tel" id="maintenancePhone" name="maintenance_phone" required placeholder="Enter phone number"></div><div><label for="maintenanceEmail">Email Address (Optional):</label><input type="email" id="maintenanceEmail" name="maintenance_email" placeholder="Enter email address"></div></div>
-                </div>
-                <!-- Caterer Provider -->
-                <div class="contact-group">
-                    <div class="provider-header"><h4>Caterer</h4><div class="na-option"><label><input type="checkbox" name="catererNA" onclick="toggleProvider('caterer', this.checked)"> N/A</label></div></div>
-                    <label for="catererName">Name:</label><input type="text" id="catererName" name="caterer_name" required placeholder="Enter caterer name">
-                    <div class="two-column"><div><label for="catererPhone">Phone Number:</label><input type="tel" id="catererPhone" name="caterer_phone" required placeholder="Enter phone number"></div><div><label for="catererEmail">Email Address (Optional):</label><input type="email" id="catererEmail" name="caterer_email" placeholder="Enter email address"></div></div>
-                </div>
-                <!-- Above Wing Provider -->
-                <div class="contact-group">
-                    <div class="provider-header"><h4>Above Wing Provider</h4><div class="na-option"><label><input type="checkbox" name="aboveWingNA" onclick="toggleProvider('aboveWing', this.checked)"> N/A</label></div></div>
-                    <label for="aboveWingName">Name:</label><input type="text" id="aboveWingName" name="above_wing_name" required placeholder="Enter provider name">
-                    <div class="two-column"><div><label for="aboveWingPhone">Phone Number:</label><input type="tel" id="aboveWingPhone" name="above_wing_phone" required placeholder="Enter phone number"></div><div><label for="aboveWingEmail">Email Address (Optional):</label><input type="email" id="aboveWingEmail" name="above_wing_email" placeholder="Enter email address"></div></div>
-                </div>
-                <!-- Below Wing Provider -->
-                <div class="contact-group">
-                    <div class="provider-header"><h4>Below Wing Provider</h4><div class="na-option"><label><input type="checkbox" name="belowWingNA" onclick="toggleProvider('belowWing', this.checked)"> N/A</label></div></div>
-                    <label for="belowWingName">Name:</label><input type="text" id="belowWingName" name="below_wing_name" required placeholder="Enter provider name">
-                    <div class="two-column"><div><label for="belowWingPhone">Phone Number:</label><input type="tel" id="belowWingPhone" name="below_wing_phone" required placeholder="Enter phone number"></div><div><label for="belowWingEmail">Email Address (Optional):</label><input type="email" id="belowWingEmail" name="below_wing_email" placeholder="Enter email address"></div></div>
-                </div>
-                <!-- Deicing Company -->
-                <div class="contact-group">
-                    <div class="provider-header"><h4>Deicing Company</h4><div class="na-option"><label><input type="checkbox" name="deicingNA" onclick="toggleProvider('deicing', this.checked)"> N/A</label></div></div>
-                    <label for="deicingName">Name:</label><input type="text" id="deicingName" name="deicing_name" required placeholder="Enter company name">
-                    <div class="two-column"><div><label for="deicingPhone">Phone Number:</label><input type="tel" id="deicingPhone" name="deicing_phone" required placeholder="Enter phone number"></div><div><label for="deicingEmail">Email Address (Optional):</label><input type="email" id="deicingEmail" name="deicing_email" placeholder="Enter email address"></div></div>
+            <h3>Providers</h3>
+            <!-- Maintenance Provider -->
+            <div class="contact-group">
+                <div class="provider-header"><h4>Maintenance Provider</h4></div>
+                <label for="maintenanceName">Name:</label>
+                <input type="text" id="maintenanceName" name="maintenance_name" required placeholder="Enter name">
+                <div class="error-message" id="maintenanceNameError">This field is required.</div>
+                <div class="two-column">
+                    <div>
+                        <label for="maintenancePhone">Phone Number:</label>
+                        <input type="tel" id="maintenancePhone" name="maintenance_phone" required placeholder="Enter phone number">
+                        <div class="error-message" id="maintenancePhoneError">This field is required.</div>
+                    </div>
+                    <div>
+                        <label for="maintenanceEmail">Email Address (Optional):</label>
+                        <input type="email" id="maintenanceEmail" name="maintenance_email" placeholder="Enter email address">
+                    </div>
                 </div>
             </div>
-            
-            <div id="notesContainer" style="display: none;">
-                <h3>Operational Notes</h3>
-                <label for="operationalNotes">Operational Notes (Optional):</label>
-                <textarea id="operationalNotes" name="operational_notes" rows="5" placeholder="Enter any operational notes or comments"></textarea>
+            <!-- Caterer -->
+            <div class="contact-group">
+                <div class="provider-header"><h4>Caterer</h4></div>
+                <label for="catererName">Name:</label>
+                <input type="text" id="catererName" name="caterer_name" required placeholder="Enter name">
+                <div class="error-message" id="catererNameError">This field is required.</div>
+                <div class="two-column">
+                    <div>
+                        <label for="catererPhone">Phone Number:</label>
+                        <input type="tel" id="catererPhone" name="caterer_phone" required placeholder="Enter phone number">
+                        <div class="error-message" id="catererPhoneError">This field is required.</div>
+                    </div>
+                    <div>
+                        <label for="catererEmail">Email Address (Optional):</label>
+                        <input type="email" id="catererEmail" name="caterer_email" placeholder="Enter email address">
+                    </div>
+                </div>
+            </div>
+            <!-- Above Wing -->
+            <div class="contact-group">
+                <div class="provider-header"><h4>Above Wing Provider</h4></div>
+                <label for="aboveWingName">Name:</label>
+                <input type="text" id="aboveWingName" name="above_wing_name" required placeholder="Enter name">
+                <div class="error-message" id="aboveWingNameError">This field is required.</div>
+                <div class="two-column">
+                    <div>
+                        <label for="aboveWingPhone">Phone Number:</label>
+                        <input type="tel" id="aboveWingPhone" name="above_wing_phone" required placeholder="Enter phone number">
+                        <div class="error-message" id="aboveWingPhoneError">This field is required.</div>
+                    </div>
+                    <div>
+                        <label for="aboveWingEmail">Email Address (Optional):</label>
+                        <input type="email" id="aboveWingEmail" name="above_wing_email" placeholder="Enter email address">
+                    </div>
+                </div>
+            </div>
+            <!-- Below Wing -->
+            <div class="contact-group">
+                <div class="provider-header"><h4>Below Wing Provider</h4></div>
+                <label for="belowWingName">Name:</label>
+                <input type="text" id="belowWingName" name="below_wing_name" required placeholder="Enter name">
+                <div class="error-message" id="belowWingNameError">This field is required.</div>
+                <div class="two-column">
+                    <div>
+                        <label for="belowWingPhone">Phone Number:</label>
+                        <input type="tel" id="belowWingPhone" name="below_wing_phone" required placeholder="Enter phone number">
+                        <div class="error-message" id="belowWingPhoneError">This field is required.</div>
+                    </div>
+                    <div>
+                        <label for="belowWingEmail">Email Address (Optional):</label>
+                        <input type="email" id="belowWingEmail" name="below_wing_email" placeholder="Enter email address">
+                    </div>
+                </div>
+            </div>
+            <!-- Deicing Company -->
+            <div class="contact-group">
+                <div class="provider-header"><h4>Deicing Company</h4></div>
+                <label for="deicingName">Name:</label>
+                <input type="text" id="deicingName" name="deicing_name" required placeholder="Enter name">
+                <div class="error-message" id="deicingNameError">This field is required.</div>
+                <div class="two-column">
+                    <div>
+                        <label for="deicingPhone">Phone Number:</label>
+                        <input type="tel" id="deicingPhone" name="deicing_phone" required placeholder="Enter phone number">
+                        <div class="error-message" id="deicingPhoneError">This field is required.</div>
+                    </div>
+                    <div>
+                        <label for="deicingEmail">Email Address (Optional):</label>
+                        <input type="email" id="deicingEmail" name="deicing_email" placeholder="Enter email address">
+                    </div>
+                </div>
+            </div>
+            <!-- Fueler -->
+            <div class="contact-group">
+                <div class="provider-header"><h4>Fueler</h4></div>
+                <label for="fuelerName">Name:</label>
+                <input type="text" id="fuelerName" name="fueler_name" required placeholder="Enter name">
+                <div class="error-message" id="fuelerNameError">This field is required.</div>
+                <div class="two-column">
+                    <div>
+                        <label for="fuelerPhone">Phone Number:</label>
+                        <input type="tel" id="fuelerPhone" name="fueler_phone" required placeholder="Enter phone number">
+                        <div class="error-message" id="fuelerPhoneError">This field is required.</div>
+                    </div>
+                    <div>
+                        <label for="fuelerEmail">Email Address (Optional):</label>
+                        <input type="email" id="fuelerEmail" name="fueler_email" placeholder="Enter email address">
+                    </div>
+                </div>
             </div>
 
-            <button type="submit" class="submit-btn" id="submitButton" style="display: none;">Submit</button>
+            <h3>Operational Notes</h3>
+            <textarea id="operationalNotes" name="operational_notes" rows="5" placeholder="Enter any operational notes, i.e., Hours Available, or who to contact after-hours"></textarea>
+
+            <button type="submit" class="submit-btn" id="submitButton">Submit</button>
         </form>
     </div>
 
     <script>
-        let contactIndex = 0;
-        const contactGroupsContainer = document.getElementById('contactGroups');
-        const addMoreRadios = document.getElementsByName('addMore');
-        const hasLocalOpsRadios = document.getElementsByName('hasLocalOps');
-        
-        const operationsContainer = document.getElementById('operationsContainer');
-        const providersContainer = document.getElementById('providersContainer');
-        const notesContainer = document.getElementById('notesContainer');
-        const dfwOpsSection = document.getElementById('dfwOpsSection');
-        
-        const submitButton = document.getElementById('submitButton');
         const airlineForm = document.getElementById('airlineForm');
-        const successMessage = document.getElementById('successMessage');
-
-        document.getElementById('airline').addEventListener('input', function() {
-            document.getElementById('airlineTitle').textContent = this.value.trim() || '';
+        
+        // --- Event Listeners ---
+        document.getElementById('airline').addEventListener('input', e => {
+            document.getElementById('airlineTitle').textContent = e.target.value.trim();
         });
 
+        document.getElementById('addContactBtn').addEventListener('click', createContactGroup);
+
+        document.getElementsByName('hasLocalOps').forEach(radio => radio.addEventListener('change', e => {
+            const dfwOpsSection = document.getElementById('dfwOpsSection');
+            const show = e.target.value === 'yes';
+            dfwOpsSection.style.display = show ? 'block' : 'none';
+            document.getElementById('dfwPhone').required = show;
+        }));
+        
+        // --- Dynamic Contact Group Functions ---
+        let contactIndex = 0;
         function createContactGroup() {
             contactIndex++;
+            const contactGroupsContainer = document.getElementById('contactGroupsContainer');
             const newContact = document.createElement('div');
             newContact.className = 'contact-group';
             newContact.dataset.index = contactIndex;
+            
             newContact.innerHTML = `
-                <div class="contact-header">
-                    <div style="flex-grow: 1;">
+                ${contactIndex > 1 ? `<button type="button" class="remove-btn" onclick="removeContact(${contactIndex})">×</button>` : ''}
+                <div class="two-column">
+                    <div>
                         <label for="contactRole${contactIndex}">Role:</label>
                         <select id="contactRole${contactIndex}" name="contact_role_${contactIndex}" required><option value="" disabled selected>Select role</option><option value="supervisor">Supervisor</option><option value="lead_agent">Lead Agent</option></select>
+                        <div class="error-message" id="contactRole${contactIndex}Error">This field is required.</div>
                     </div>
-                    <div style="flex-grow: 2;">
+                    <div>
                         <label for="contactName${contactIndex}">Name:</label>
                         <input type="text" id="contactName${contactIndex}" name="contact_name_${contactIndex}" required placeholder="Enter name">
+                        <div class="error-message" id="contactName${contactIndex}Error">This field is required.</div>
                     </div>
                 </div>
                 <div class="two-column">
-                    <div><label for="contactPhone${contactIndex}">Phone Number:</label><input type="tel" id="contactPhone${contactIndex}" name="contact_phone_${contactIndex}" required placeholder="Enter phone number"></div>
-                    <div><label for="contactEmail${contactIndex}">Email Address:</label><input type="email" id="contactEmail${contactIndex}" name="contact_email_${contactIndex}" required placeholder="Enter email address"></div>
+                    <div>
+                        <label for="contactPhone${contactIndex}">Phone Number:</label>
+                        <input type="tel" id="contactPhone${contactIndex}" name="contact_phone_${contactIndex}" required placeholder="Enter phone number">
+                        <div class="error-message" id="contactPhone${contactIndex}Error">This field is required.</div>
+                    </div>
+                    <div>
+                        <label for="contactEmail${contactIndex}">Email Address:</label>
+                        <input type="email" id="contactEmail${contactIndex}" name="contact_email_${contactIndex}" required placeholder="Enter email address">
+                        <div class="error-message" id="contactEmail${contactIndex}Error">A valid email is required.</div>
+                    </div>
                 </div>
-                <button type="button" class="remove-btn" onclick="removeContact(${contactIndex})">Remove Contact</button>
             `;
             contactGroupsContainer.appendChild(newContact);
         }
@@ -333,59 +394,42 @@
             if (contactGroup) contactGroup.remove();
         }
 
-        addMoreRadios.forEach(radio => {
-            radio.addEventListener('change', function() {
-                if (this.value === 'yes') {
-                    createContactGroup();
-                    this.checked = false;
-                } else if (this.value === 'no') {
-                    operationsContainer.style.display = 'block';
-                    providersContainer.style.display = 'block';
-                    notesContainer.style.display = 'block';
-                    submitButton.style.display = 'block';
-                }
-            });
-        });
-        
-        hasLocalOpsRadios.forEach(radio => {
-            radio.addEventListener('change', function() {
-                if (this.value === 'yes') {
-                    dfwOpsSection.style.display = 'block';
-                    // Make fields required when shown
-                    document.getElementById('dfwPhone').required = true;
-                    document.getElementById('dfwEmail').required = !document.querySelector('[name="dfwEmailNA"]').checked;
+        // --- Validation and Submission ---
+        function validateForm() {
+            let isValid = true;
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('input.invalid, select.invalid').forEach(el => el.classList.remove('invalid'));
+
+            airlineForm.querySelectorAll('[required]').forEach(input => {
+                let hasError = false;
+                if (input.type === 'email') {
+                    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+                        hasError = true;
+                    }
                 } else {
-                    dfwOpsSection.style.display = 'none';
-                    // Make fields not required when hidden
-                    document.getElementById('dfwPhone').required = false;
-                    document.getElementById('dfwEmail').required = false;
+                    if (input.value.trim() === '') {
+                        hasError = true;
+                    }
+                }
+
+                if (hasError) {
+                    isValid = false;
+                    const errorDiv = document.getElementById(input.id + 'Error');
+                    if (errorDiv) {
+                        errorDiv.style.display = 'block';
+                    }
+                    input.classList.add('invalid');
                 }
             });
-        });
-
-        function toggleProvider(prefix, disable) {
-            const fields = [`${prefix}Name`, `${prefix}Phone`, `${prefix}Email`];
-            fields.forEach(fieldId => {
-                const input = document.getElementById(fieldId);
-                if (input) {
-                    input.disabled = disable;
-                    input.required = !disable && !fieldId.includes('Email'); // Email is optional
-                    if (disable) input.value = '';
-                }
-            });
+            return isValid;
         }
-
-        function toggleInput(id, disable) {
-            const input = document.getElementById(id);
-            input.disabled = disable;
-            input.required = !disable;
-            if (disable) input.value = '';
-        }
-        
-        createContactGroup();
 
         airlineForm.addEventListener('submit', (event) => {
             event.preventDefault();
+            if (!validateForm()) {
+                return;
+            }
+            
             const formData = new FormData(airlineForm);
             fetch('/', {
                 method: 'POST',
@@ -393,11 +437,17 @@
                 body: new URLSearchParams(formData).toString(),
             })
             .then(() => {
-                airlineForm.style.display = 'none';
-                successMessage.style.display = 'block';
+                document.querySelector('.form-container').innerHTML = `
+                    <div class="success-message" style="display: block;">
+                        <h2>Thank You!</h2>
+                        <p>Your submission has been received successfully.</p>
+                    </div>`;
             })
             .catch((error) => alert('Error submitting form: ' + error));
         });
+
+        // --- Initial State ---
+        createContactGroup(); // Add the first contact group on page load
     </script>
 </body>
 </html>
