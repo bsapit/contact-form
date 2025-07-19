@@ -35,6 +35,8 @@
         h4 {
             font-size: 1.1em;
             margin: 0;
+            margin-bottom: 10px;
+            text-align: center;
         }
         label {
             display: block;
@@ -81,6 +83,11 @@
             margin-bottom: 15px;
         }
         .yesno-question {
+            margin-bottom: 15px;
+        }
+        .instructions {
+            font-style: italic;
+            color: #585858;
             margin-bottom: 15px;
         }
         input[type="radio"], input[type="checkbox"] {
@@ -200,6 +207,7 @@
                     <label><input type="radio" name="hasLocalOps" value="yes"> Yes</label>
                     <label><input type="radio" name="hasLocalOps" value="no" checked> No</label>
                 </div>
+                <!-- DFW Ops: Shows if hasLocalOps is YES -->
                 <div id="dfwOpsSection" style="display: none;">
                     <h4>DFW Operations/Duty Phone</h4>
                     <div class="two-column">
@@ -211,6 +219,47 @@
                         <div>
                             <label for="dfwEmail">Email Address (Optional):</label>
                             <input type="email" id="dfwEmail" name="dfw_email" placeholder="Enter email address">
+                        </div>
+                    </div>
+                </div>
+                <!-- Daily Contacts: Shows if hasLocalOps is NO -->
+                <div id="dailyContactsSection">
+                    <h3>Daily Contacts</h3>
+                    <p class="instructions">Who shall we contact for daily operational needs each day of the week? Only provide information if your airline does not have a local Ops or Duty Phone.</p>
+                    <div class="two-column">
+                        <div>
+                            <h4>AM</h4>
+                            <input type="text" id="monday_am" name="monday_am" placeholder="Monday" required>
+                            <div class="error-message" id="monday_amError">This field is required.</div>
+                            <input type="text" id="tuesday_am" name="tuesday_am" placeholder="Tuesday" required>
+                            <div class="error-message" id="tuesday_amError">This field is required.</div>
+                            <input type="text" id="wednesday_am" name="wednesday_am" placeholder="Wednesday" required>
+                            <div class="error-message" id="wednesday_amError">This field is required.</div>
+                            <input type="text" id="thursday_am" name="thursday_am" placeholder="Thursday" required>
+                            <div class="error-message" id="thursday_amError">This field is required.</div>
+                            <input type="text" id="friday_am" name="friday_am" placeholder="Friday" required>
+                            <div class="error-message" id="friday_amError">This field is required.</div>
+                            <input type="text" id="saturday_am" name="saturday_am" placeholder="Saturday" required>
+                            <div class="error-message" id="saturday_amError">This field is required.</div>
+                            <input type="text" id="sunday_am" name="sunday_am" placeholder="Sunday" required>
+                            <div class="error-message" id="sunday_amError">This field is required.</div>
+                        </div>
+                        <div>
+                            <h4>PM</h4>
+                            <input type="text" id="monday_pm" name="monday_pm" placeholder="Monday" required>
+                            <div class="error-message" id="monday_pmError">This field is required.</div>
+                            <input type="text" id="tuesday_pm" name="tuesday_pm" placeholder="Tuesday" required>
+                            <div class="error-message" id="tuesday_pmError">This field is required.</div>
+                            <input type="text" id="wednesday_pm" name="wednesday_pm" placeholder="Wednesday" required>
+                            <div class="error-message" id="wednesday_pmError">This field is required.</div>
+                            <input type="text" id="thursday_pm" name="thursday_pm" placeholder="Thursday" required>
+                            <div class="error-message" id="thursday_pmError">This field is required.</div>
+                            <input type="text" id="friday_pm" name="friday_pm" placeholder="Friday" required>
+                            <div class="error-message" id="friday_pmError">This field is required.</div>
+                            <input type="text" id="saturday_pm" name="saturday_pm" placeholder="Saturday" required>
+                            <div class="error-message" id="saturday_pmError">This field is required.</div>
+                            <input type="text" id="sunday_pm" name="sunday_pm" placeholder="Sunday" required>
+                            <div class="error-message" id="sunday_pmError">This field is required.</div>
                         </div>
                     </div>
                 </div>
@@ -344,10 +393,21 @@
         document.getElementById('addContactBtn').addEventListener('click', createContactGroup);
 
         document.getElementsByName('hasLocalOps').forEach(radio => radio.addEventListener('change', e => {
+            const showDfwOps = e.target.value === 'yes';
             const dfwOpsSection = document.getElementById('dfwOpsSection');
-            const show = e.target.value === 'yes';
-            dfwOpsSection.style.display = show ? 'block' : 'none';
-            document.getElementById('dfwPhone').required = show;
+            const dailyContactsSection = document.getElementById('dailyContactsSection');
+
+            // Toggle visibility
+            dfwOpsSection.style.display = showDfwOps ? 'block' : 'none';
+            dailyContactsSection.style.display = showDfwOps ? 'none' : 'block';
+
+            // Toggle required attributes for DFW Ops
+            document.getElementById('dfwPhone').required = showDfwOps;
+
+            // Toggle required attributes for Daily Contacts
+            dailyContactsSection.querySelectorAll('input').forEach(input => {
+                input.required = !showDfwOps;
+            });
         }));
         
         // --- Dynamic Contact Group Functions ---
@@ -401,6 +461,9 @@
             document.querySelectorAll('input.invalid, select.invalid').forEach(el => el.classList.remove('invalid'));
 
             airlineForm.querySelectorAll('[required]').forEach(input => {
+                // Check if the input is visible before validating
+                if (input.offsetParent === null) return; // Skips hidden inputs
+
                 let hasError = false;
                 if (input.type === 'email') {
                     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
@@ -427,6 +490,12 @@
         airlineForm.addEventListener('submit', (event) => {
             event.preventDefault();
             if (!validateForm()) {
+                // Find the first invalid field and scroll to it for better UX
+                const firstError = document.querySelector('.invalid');
+                if (firstError) {
+                    firstError.focus();
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
                 return;
             }
             
