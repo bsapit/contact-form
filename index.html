@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airline Contact Information</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #E6E6E6; /* DFW Light Gray */
+        }
+        .form-container {
+            background-color: #FFFFFF; /* White */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(88, 88, 88, 0.5); /* DFW Dark Gray with opacity */
+        }
+        h2, h3, h4 {
+            color: #41395F; /* DFW Purple */
+            margin-bottom: 20px;
+        }
+        h2 span {
+            font-style: italic;
+            color: #3EB1C8; /* DFW Blue */
+        }
+        h3 {
+            font-size: 1.2em;
+            margin-top: 25px;
+            border-bottom: 1px solid #3EB1C8; /* DFW Blue */
+            padding-bottom: 10px;
+        }
+        h4 {
+            font-size: 1.1em;
+            margin: 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #585858; /* DFW Dark Gray */
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #585858; /* DFW Dark Gray */
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #F0F0F0; /* Lightened DFW Light Gray */
+        }
+        input:disabled, select:disabled, textarea:disabled {
+            background-color: #E6E6E6; /* DFW Light Gray */
+            cursor: not-allowed;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3EB1C8; /* DFW Blue */
+            box-shadow: 0 0 6px rgba(62, 177, 200, 0.5); /* DFW Blue with opacity */
+        }
+        .flex-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .flex-container .airline-input-container {
+            flex: 1;
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .contact-group {
+            border: 1px solid #3EB1C8; /* DFW Blue */
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            background-color: #F0F0F0; /* Lightened DFW Light Gray */
+        }
+        .contact-group label {
+            margin-top: 10px;
+        }
+        .add-another {
+            margin-bottom: 15px;
+        }
+        .na-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        .provider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .email-na-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+        .submit-btn {
+            background-color: #FF5000; /* DFW Orange */
+            color: #FFFFFF; /* White */
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 16px;
+            width: 100%;
+            display: none; /* Hidden by default */
+        }
+        .submit-btn:hover {
+            background-color: #E64500; /* Darkened DFW Orange */
+        }
+        .error {
+            color: #FF5000; /* DFW Orange */
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            display: none;
+        }
+        .success-message {
+            display: none;
+            color: #3EB1C8; /* DFW Blue */
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #E6F4F8; /* Light DFW Blue */
+            border-radius: 6px;
+        }
+        .remove-btn {
+            background-color: #F2A900; /* DFW Yellow */
+            color: #FFFFFF; /* White */
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .remove-btn:hover {
+            background-color: #D99400; /* Darkened DFW Yellow */
+        }
+        .contact-header {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="flex-container">
+            <h2>Airline Contact Information for <span id="airlineTitle"></span></h2>
+            <div class="airline-input-container">
+                <label for="airline">Airline Name</label>
+                <input type="text" id="airline" name="airline" required placeholder="Enter airline name">
+                <div id="airlineError" class="error">Please enter the airline name.</div>
+            </div>
+        </div>
+        <div id="successMessage" class="success-message">Thank you! Your submission has been received.</div>
+
+        <form id="airlineForm" name="airline-contact" method="POST" netlify netlify-honeypot="bot-field">
+            
+            <p style="display: none;">
+                <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+            </p>
+
+            <h3>Station Manager Details</h3>
+            <label for="managerName">Station Manager Name:</label>
+            <input type="text" id="managerName" name="manager_name" required placeholder="Enter station manager's name">
+
+            <div class="two-column">
+                <div>
+                    <label for="managerPhone">Phone Number:</label>
+                    <input type="tel" id="managerPhone" name="manager_phone" required placeholder="Enter phone number">
+                </div>
+                <div>
+                    <label for="managerEmail">Email Address:</label>
+                    <input type="email" id="managerEmail" name="manager_email" required placeholder="Enter email address">
+                </div>
+            </div>
+
+            <h3>Supervisor and Lead Agent Details</h3>
+            <div id="contactGroups">
+            </div>
+            <div class="add-another">
+                <label>Add another contact?</label>
+                <label><input type="radio" name="addMore" value="yes"> Yes</label>
+                <label><input type="radio" name="addMore" value="no"> No</label>
+            </div>
+
+            <h3>Operations</h3>
+            <div class="contact-group">
+                <h4>DFW Operations</h4>
+                <label for="dfwPhone">Phone Number:</label>
+                <input type="tel" id="dfwPhone" name="dfw_phone" required>
+                <label for="dfwEmail">Email Address:</label>
+                <div class="email-na-option">
+                    <label><input type="checkbox" name="dfwEmailNA" onclick="toggleInput('dfwEmail', this.checked)"> N/A</label>
+                </div>
+                <input type="email" id="dfwEmail" name="dfw_email" required>
+            </div>
+            <div class="contact-group">
+                <h4>System Operations</h4>
+                <label for="systemPhone">Phone Number:</label>
+                <input type="tel" id="systemPhone" name="system_phone" required>
+                <label for="systemEmail">Email Address:</label>
+                <div class="email-na-option">
+                    <label><input type="checkbox" name="systemEmailNA" onclick="toggleInput('systemEmail', this.checked)"> N/A</label>
+                </div>
+                <input type="email" id="systemEmail" name="system_email" required>
+            </div>
+
+            <h3>Providers</h3>
+            <div class="contact-group">
+                <div class="provider-header">
+                    <h4>Maintenance Provider</h4>
+                    <div class="na-option">
+                        <label><input type="checkbox" name="maintenanceNA" onclick="toggleProvider('maintenance', this.checked)"> N/A</label>
+                    </div>
+                </div>
+                <label for="maintenanceName">Name:</label>
+                <input type="text" id="maintenanceName" name="maintenance_name" required>
+                <div class="two-column">
+                    <div>
+                        <label for="maintenancePhone">Phone Number:</label>
+                        <input type="tel" id="maintenancePhone" name="maintenance_phone" required>
+                    </div>
+                    <div>
+                        <label for="maintenanceEmail">Email Address (Optional):</label>
+                        <input type="email" id="maintenanceEmail" name="maintenance_email">
+                    </div>
+                </div>
+            </div>
+
+            <h3>Operational Notes</h3>
+            <label for="operationalNotes">Operational Notes (Optional):</label>
+            <textarea id="operationalNotes" name="operational_notes" rows="5"></textarea>
+
+            <button type="submit" class="submit-btn" id="submitButton">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        let contactIndex = 0;
+        const contactGroupsContainer = document.getElementById('contactGroups');
+        const addMoreRadios = document.getElementsByName('addMore');
+        const submitButton = document.getElementById('submitButton');
+        const airlineForm = document.getElementById('airlineForm');
+        const successMessage = document.getElementById('successMessage');
+
+        document.getElementById('airline').addEventListener('input', function() {
+            document.getElementById('airlineTitle').textContent = this.value.trim() || '';
+        });
+
+        function createContactGroup() {
+            contactIndex++;
+            const newContact = document.createElement('div');
+            newContact.className = 'contact-group';
+            newContact.dataset.index = contactIndex;
+            newContact.innerHTML = `
+                <div class="contact-header">
+                    <div style="flex-grow: 1;">
+                        <label for="contactRole${contactIndex}">Role:</label>
+                        <select id="contactRole${contactIndex}" name="contact_role_${contactIndex}" required>
+                            <option value="" disabled selected>Select role</option>
+                            <option value="supervisor">Supervisor</option>
+                            <option value="lead_agent">Lead Agent</option>
+                        </select>
+                    </div>
+                    <div style="flex-grow: 2;">
+                        <label for="contactName${contactIndex}">Name:</label>
+                        <input type="text" id="contactName${contactIndex}" name="contact_name_${contactIndex}" required placeholder="Enter name">
+                    </div>
+                </div>
+                <div class="two-column">
+                    <div>
+                        <label for="contactPhone${contactIndex}">Phone Number:</label>
+                        <input type="tel" id="contactPhone${contactIndex}" name="contact_phone_${contactIndex}" required placeholder="Enter phone number">
+                    </div>
+                    <div>
+                        <label for="contactEmail${contactIndex}">Email Address:</label>
+                        <input type="email" id="contactEmail${contactIndex}" name="contact_email_${contactIndex}" required placeholder="Enter email address">
+                    </div>
+                </div>
+                <button type="button" class="remove-btn" onclick="removeContact(${contactIndex})">Remove Contact</button>
+            `;
+            contactGroupsContainer.appendChild(newContact);
+        }
+
+        function removeContact(index) {
+            const contactGroup = document.querySelector(`.contact-group[data-index="${index}"]`);
+            if (contactGroup) contactGroup.remove();
+        }
+
+        addMoreRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'yes') {
+                    createContactGroup();
+                    this.checked = false;
+                    submitButton.style.display = 'none';
+                } else if (this.value === 'no') {
+                    submitButton.style.display = 'block';
+                }
+            });
+        });
+
+        function toggleProvider(prefix, disable) {
+            const fields = [`${prefix}Name`, `${prefix}Phone`, `${prefix}Email`];
+            fields.forEach(field => {
+                const input = document.getElementById(field);
+                if (input) {
+                    input.disabled = disable;
+                    input.required = !disable && !input.name.includes('Email');
+                    if (disable) input.value = '';
+                }
+            });
+        }
+
+        function toggleInput(id, disable) {
+            const input = document.getElementById(id);
+            input.disabled = disable;
+            input.required = !disable;
+            if (disable) input.value = '';
+        }
+        
+        createContactGroup();
+
+        airlineForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const formData = new FormData(airlineForm);
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString(),
+            })
+            .then(() => {
+                airlineForm.style.display = 'none';
+                successMessage.style.display = 'block';
+            })
+            .catch((error) => alert(error));
+        });
+    </script>
+</body>
+</html>
